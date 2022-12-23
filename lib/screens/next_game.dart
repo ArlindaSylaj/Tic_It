@@ -3,7 +3,7 @@ import 'package:tic_it/components/buildAppBar.dart';
 import 'package:tic_it/components/menu.dart';
 import 'package:tic_it/components/sectorButtons.dart';
 import 'package:tic_it/components/footer.dart';
-import 'package:tic_it/screens/selected_sector.dart';
+import 'package:tic_it/screens/book_my_seat.dart';
 
 import '../constants.dart';
 
@@ -79,7 +79,7 @@ class _NextGameState extends State<NextGame> {
                     Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children:  const [
-                      SectorButtons(buttonsText: 'Sektori J1', routeName: SelectedSector(),),
+                      SectorButtons(buttonsText: 'Sektori J1', routeName: BookMySeats(),),
                       SectorButtons(buttonsText: 'Sektori J2'),
                       SectorButtons(buttonsText: 'Sektori J3'),
                     ],
