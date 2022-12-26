@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:tic_it/screens/next_game.dart';
-
 import '../main.dart';
+
+// TODO: Add a hero widget when you first start the app
+// TODO: make home page aesthetic and user friendly
 class Menu extends StatelessWidget {
   const Menu({Key? key}) : super(key: key);
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tic_it/constants.dart';
 
+// TODO: add the not available condition to buttons if there are no seats available
 class SectorButtons extends StatelessWidget {
   final String buttonsText;
   final  routeName;
@@ -10,19 +11,12 @@ class SectorButtons extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ButtonStyle flatButtonStyle = TextButton.styleFrom(
-      backgroundColor: const Color(0xfff8946c),
-      fixedSize: const Size(120, 30),
-      padding: const EdgeInsets.symmetric(horizontal: 16.0),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20.0)),
-      ),
-    );
+
 
     return Wrap(
         children: [
           TextButton(
-          style: flatButtonStyle,
+          style: kFlatButtonStyle,
           onPressed: () {
             Navigator.push(
               context,
