@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:book_my_seat/book_my_seat.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:tic_it/constants.dart';
+import 'package:tic_it/widgets/ticket_widget.dart';
 
 import '../components/footer.dart';
 class BookMySeats extends StatefulWidget {
@@ -29,7 +31,7 @@ class _BookMySeatsState extends State<BookMySeats> {
             Flexible(
               child: SizedBox(
                 width: double.maxFinite,
-                height: 500,
+                height: 170,
                 child: SingleChildScrollView(
                   scrollDirection: Axis.horizontal,
                   child: SeatLayoutWidget(
@@ -38,8 +40,8 @@ class _BookMySeatsState extends State<BookMySeats> {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
                           content: seatState == SeatState.selected
-                              ? Text("Selected Seat[$rowI][$colI]")
-                              : Text("De-selected Seat[$rowI][$colI]"),
+                              ? Text("Selected Seat[$rowI][$colI]",textAlign: TextAlign.center,)
+                              : Text("De-selected Seat[$rowI][$colI]",textAlign: TextAlign.center,),
                         ),
                       );
                       if (seatState == SeatState.selected) {
@@ -1172,17 +1174,52 @@ class _BookMySeatsState extends State<BookMySeats> {
             const SizedBox(
               height: 12,
             ),
-            ElevatedButton(
-              onPressed: () {
-                setState(() {});
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.resolveWith((states) => const Color(0xFFfc4c4e)),
-              ),
-              child:  const Text('Show my selected seat numbers'),
+            Column(
+              children: [
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                    });
+                  },
+                  style: kSeatButtonStyle,
+                  child:  const Text('Show my selected seat numbers'),
+                ),
+                const SizedBox(height: 12),
+
+                  Container(
+                    padding: const EdgeInsets.all(15),
+                      height: 150,
+                      child: Text(selectedSeats.join(" , "))),
+              ],
             ),
-            const SizedBox(height: 12),
-            Text(selectedSeats.join(" , ")),
+            Padding(
+              padding: const EdgeInsets.all(18.0),
+              child: ElevatedButton(
+                style: kFlatButtonStyle,
+                  onPressed: (){
+                  if(selectedSeats.isEmpty){
+                    const snackBar = SnackBar(
+                     // backgroundColor: Color(0xfff8946c),
+                      content: Text(
+                        'Please select a seat',
+                        textAlign: TextAlign.center,
+                      ),
+                    );
+                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
+                  }else {
+                    // if ( /*&& singedIn*/) {
+                    //   Navigator.push(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => const MyTicketWidget()),
+                    //   );
+                    // }
+                  }
+
+                  },
+                  child: const Text('Continue'),
+              ),
+            ),
             const Footer(),
           ],
 
@@ -1190,6 +1227,7 @@ class _BookMySeatsState extends State<BookMySeats> {
       ),
     );
   }
+
 }
 
 class SeatNumber {
@@ -1206,8 +1244,50 @@ class SeatNumber {
   @override
   int get hashCode => rowI.hashCode;
 
+
+
+  String rows(int rowI){
+    String row = '';
+      switch(rowI){
+        case 1: { row = ('M');}
+          break;
+        case 2: { row=('N');}
+        break;
+        case 3: { row=('L');}
+        break;
+        case 4: { row=('K');}
+        break;
+        case 5: { row=('J');}
+        break;
+        case 6: { row=('I');}
+        break;
+        case 7: { row=('H');}
+        break;
+        case 8: { row=('G');}
+        break;
+        case 9: { row=('F');}
+        break;
+        case 10: { row=('E');}
+        break;
+        case 11: { row=('D');}
+        break;
+        case 12: { row=('C');}
+        break;
+        case 13: { row=('B');}
+        break;
+        case 14: { row=('A');}
+        break;
+      }
+      return row;
+  }
   @override
   String toString() {
-    return '[$rowI][$colI]';
+    return 'Rreshti ${rows(rowI)} Kolona $colI';
   }
+  // @override
+  // String toString() {
+  //   return 'row[$rowI] col[$colI]';
+  // }
+
+
 }
